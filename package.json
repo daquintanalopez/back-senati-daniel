@@ -1,5 +1,6 @@
 {
   "name": "back-senati",
+  "type": "module",
   "version": "1.0.0",
   "description": "First App NodeJS",
   "main": "index.js",

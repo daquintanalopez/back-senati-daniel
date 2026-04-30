@@ -1,4 +1,5 @@
-const express = require('express');
+//const express = require('express');
+import express from "express";
 const app = express();
 
 app.get("/test", (req, res) =>{
@@ -6,6 +7,7 @@ app.get("/test", (req, res) =>{
 });
 
 
-app.listen(4000, () => {
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
     console.log("Express server started");
 });
