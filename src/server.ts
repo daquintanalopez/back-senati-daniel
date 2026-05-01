@@ -1,8 +1,8 @@
 import express from "express";
+import router from "./router";
+
 const app = express();
 
-app.get("/test", (req, res) =>{
-    res.send("Hola SENATI, buenas noches");
-});
+app.use("/api", router);
 
 export default app;
