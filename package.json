@@ -16,6 +16,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "branches": "bash scripts/branch-health.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
