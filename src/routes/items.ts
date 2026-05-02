@@ -1,14 +1,17 @@
-const { Router } = require('express');
-const { listItems, getItemById, addItem } = require('../data/itemsStore');
+import { Router } from 'express';
+import { addItem, getItemById, listItems } from '../data/itemsStore.js';
 
-/** /api/items — collection + single item + create */
-const router = Router();
+/**
+ * Example REST-style resource.
+ * Mounted under /api/items → GET /api/items, GET /api/items/:id, POST /api/items
+ */
+export const itemsRouter = Router();
 
-router.get('/', (_req, res) => {
+itemsRouter.get('/', (_req, res) => {
   res.json({ items: listItems() });
 });
 
-router.get('/:id', (req, res) => {
+itemsRouter.get('/:id', (req, res) => {
   const item = getItemById(req.params.id);
   if (!item) {
     res.status(404).json({ error: 'Item not found' });
@@ -17,7 +20,7 @@ router.get('/:id', (req, res) => {
   res.json(item);
 });
 
-router.post('/', (req, res) => {
+itemsRouter.post('/', (req, res) => {
   const title = typeof req.body?.title === 'string' ? req.body.title.trim() : '';
   if (!title) {
     res.status(400).json({ error: 'Body must include a non-empty "title" string' });
@@ -26,5 +29,3 @@ router.post('/', (req, res) => {
   const created = addItem(title);
   res.status(201).json(created);
 });
-
-module.exports = router;

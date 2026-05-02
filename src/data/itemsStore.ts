@@ -1,24 +1,23 @@
-/** In-memory store (replace with a database later). */
+import type { Item } from '../types/item.js';
 
-let items = [
+/** Example in-memory store (replace with DB later). */
+let items: Item[] = [
   { id: '1', title: 'First item' },
   { id: '2', title: 'Second item' },
 ];
 
-function listItems() {
+export function listItems(): Item[] {
   return items;
 }
 
-function getItemById(id) {
+export function getItemById(id: string): Item | undefined {
   return items.find((i) => i.id === id);
 }
 
-function addItem(title) {
+export function addItem(title: string): Item {
   const numericIds = items.map((i) => Number(i.id)).filter(Number.isFinite);
   const next = (numericIds.length ? Math.max(...numericIds) : 0) + 1;
-  const item = { id: String(next), title };
+  const item: Item = { id: String(next), title };
   items = [...items, item];
   return item;
 }
-
-module.exports = { listItems, getItemById, addItem };
